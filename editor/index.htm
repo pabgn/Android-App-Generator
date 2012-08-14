@@ -2,6 +2,17 @@
 	<head>
 		<title>Creator</title>
 		<link href='http://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
+		<script src="http://code.jquery.com/jquery-1.8.0.min.js"> </script>
+		<script src="js/jquery-ui.js"> </script>
+		<script src="js/editor.js"></script>
+		<script src="js/HTML.js"></script>
+		<script>
+		$(function() {
+			editor.initDraggable();
+	});
+		</script>
+		
+		
 
 	<style>
 	html, body{
@@ -28,7 +39,7 @@
 	.table_p{
 		font-size:8px;
 		
-	}
+	} 
 	#options p{
 		color:white;
 		font-size:20px;
@@ -56,13 +67,21 @@
 		
 			<table border="0" style="width:100%;">
 				<tr>
-				<td style="text-align:center;"><img src="images/layout.png"><p style="margin-top:0px;line-height:0px;font-size:12px;">LinearLayout</p></td>
-				<td style="text-align:center;"><img src="images/layout.png"><p style="margin-top:0px;line-height:0px;font-size:12px;">RelativeLayout</p></td>
+				<td style="text-align:center;">
+				<div class="object" id="LinearLayout">
+				<img src="images/layout.png"><p style="margin-top:0px;line-height:0px;font-size:12px;">LinearLayout</p>
+				</div></td>
+				<td style="text-align:center;">
+				<div class="object">
+				<img src="images/layout.png"><p style="margin-top:0px;line-height:0px;font-size:12px;">RelativeLayout</p>
+				</div>
+				</td>
 				<td style="text-align:center;"><img src="images/layout.png"><p style="margin-top:0px;line-height:0px;font-size:12px;">AbsoluteLayout</p></td>
 
 				</tr>
 				
 				</table>
+				
 		
 		</div>
 		
@@ -74,13 +93,18 @@
 		
 			<table border="0" style="width:100%;">
 				<tr>
-				<td style="text-align:center;"><img src="images/button.png"><p style="margin-top:0px;line-height:0px;font-size:12px;">Button</p></td>
+				<td style="text-align:left;">
+				<div class="object" id="Button">
+				<img src="images/button.png"><p style="margin-top:0px;line-height:0px;font-size:12px;">Button</p></div></td>
 				
 
 				</tr>
 				
 				</table>
 		
+		</div>
+		<div>Console:
+			<p id="console"></p>
 		</div>
 
 	</div>
@@ -91,7 +115,7 @@
 			<div id="status_bar" style="width:100%;height:25px;background-color:#000000"><
 				<div id="status_bar_icons" style="color:white;float:right;padding-top:5px;padding-right:5px;"><img src="images/battery.png"> 14:25</div>
 			</div>
-			<div id="elements">
+			<div id="elements" style="height:100%;width:100%;">
 			
 			</div>
 		</div>
@@ -101,7 +125,7 @@
 
 		
 	</div>
-	
+
 	
 	</div>
 	

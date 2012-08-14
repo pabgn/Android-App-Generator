@@ -1,0 +1,32 @@
+html, body{
+	margin:0;
+	padding:0;
+	font-family: 'Abel', sans-serif;
+	
+}
+#left{
+	float:left;
+	width:300px;
+	background-color:#FFADB6;
+	height:100%;
+	border-right:3px dotted #FF6B9C;
+	padding-left:20px;
+	
+}
+#left p{
+	color:white;
+	font-size:20px;
+	margin-top:20px;
+	
+}
+.table_p{
+	font-size:8px;
+	
+} 
+#options p{
+	color:white;
+	font-size:20px;
+	padding-top:20px;
+	padding-left:20px;
+	
+}

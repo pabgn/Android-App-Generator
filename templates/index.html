@@ -25,14 +25,14 @@
 					<tr>
 					<td style="text-align:center;">
 					<div class="object" id="LinearLayout">
-					<img src="images/layout.png"><p style="margin-top:0px;line-height:0px;font-size:12px;">LinearLayout</p>
+					<img src="{{ url_for('static', filename='images/layout.png') }}"><p style="margin-top:0px;line-height:0px;font-size:12px;">LinearLayout</p>
 					</div></td>
 					<td style="text-align:center;">
 					<div class="object">
-					<img src="images/layout.png"><p style="margin-top:0px;line-height:0px;font-size:12px;">RelativeLayout</p>
+					<img src="{{ url_for('static', filename='images/layout.png') }}"><p style="margin-top:0px;line-height:0px;font-size:12px;">RelativeLayout</p>
 					</div>
 					</td>
-					<td style="text-align:center;"><img src="images/layout.png"><p style="margin-top:0px;line-height:0px;font-size:12px;">AbsoluteLayout</p></td>
+					<td style="text-align:center;"><img src="{{ url_for('static', filename='images/layout.png') }}"><p style="margin-top:0px;line-height:0px;font-size:12px;">AbsoluteLayout</p></td>
 					</tr>
 					</table>
 			</div>
@@ -42,7 +42,7 @@
 					<tr>
 						<td style="text-align:left;">
 						<div class="object" id="Button">
-						<img src="images/button.png"><p style="margin-top:0px;line-height:0px;font-size:12px;">Button</p></div></td>
+						<img src="{{ url_for('static', filename='images/button.png') }}"><p style="margin-top:0px;line-height:0px;font-size:12px;">Button</p></div></td>
 					</tr>
 				</table>
 			</div>
@@ -53,7 +53,7 @@
 		<div id="right" style="height:100%;width:100%;background-color:#FDEEE9;padding-top:10px;">
 			<div id="screen" style="width:350px;height:500px;background-color:#BABABA;margin-left:50px;float:left;">
 				<div id="status_bar" style="width:100%;height:25px;background-color:#000000"><
-					<div id="status_bar_icons" style="color:white;float:right;padding-top:5px;padding-right:5px;"><img src="images/battery.png"> 14:25</div>
+					<div id="status_bar_icons" style="color:white;float:right;padding-top:5px;padding-right:5px;"><img src="{{ url_for('static', filename='images/battery.png') }}"> 14:25</div>
 				</div>
 				<div id="elements" style="height:100%;width:100%;">
 				</div>

@@ -19,33 +19,22 @@
 		<div id="page">
 		<div id="left">
 			<p>Widgets</p>
-			<p><small>Layouts</small></p>
-			<div id="layouts_table" id="table">
-				<table border="0" style="width:100%;">
-					<tr>
-					<td style="text-align:center;">
-					<div class="object" id="LinearLayout">
-					<img src="{{ url_for('static', filename='images/layout.png') }}"><p style="margin-top:0px;line-height:0px;font-size:12px;">LinearLayout</p>
-					</div></td>
-					<td style="text-align:center;">
-					<div class="object">
-					<img src="{{ url_for('static', filename='images/layout.png') }}"><p style="margin-top:0px;line-height:0px;font-size:12px;">RelativeLayout</p>
+				{% for type, items in objects %}
+					<p><small>{{ type }}</small></p>
+					<div id="layouts_table" id="table">
+						<table border="0" style="width:100%;">
+							<tr>
+								{% for item in items %}
+								<td style="text-align:center;">
+									<div class="object" id="{{ item }}">
+									<img src="{{ url_for('static', filename='images/') }}{{ item }}.png"><p style="margin-top:0px;line-height:0px;font-size:12px;">{{ item }}</p>
+									</div>
+								</td>
+								{% endfor %}
+							</tr>
+						</table>
 					</div>
-					</td>
-					<td style="text-align:center;"><img src="{{ url_for('static', filename='images/layout.png') }}"><p style="margin-top:0px;line-height:0px;font-size:12px;">AbsoluteLayout</p></td>
-					</tr>
-					</table>
-			</div>
-			<p><small>Buttons</small></p>
-			<div id="layouts_table" id="table">
-				<table border="0" style="width:100%;">
-					<tr>
-						<td style="text-align:left;">
-						<div class="object" id="Button">
-						<img src="{{ url_for('static', filename='images/button.png') }}"><p style="margin-top:0px;line-height:0px;font-size:12px;">Button</p></div></td>
-					</tr>
-				</table>
-			</div>
+				{% endfor %}
 			<div>Console:
 				<p id="console"></p>
 			</div>

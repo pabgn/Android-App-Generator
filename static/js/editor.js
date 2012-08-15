@@ -3,6 +3,8 @@ var editor = {
 	layoutSelected:'elements',
 	count:0,
 	empty:true,
+	insideLayout: false,
+	insideElement: 0,
 	elements:{},
 	initDraggable: function(){
 		$('.object').draggable({  
@@ -26,11 +28,13 @@ var editor = {
 			$('#'+editor.layoutSelected).append(editor.setCount(Objects[$(original).attr('id')]['HTML']));
 			//Save new element
 			id = "'"+$(original).attr('id')+editor.count+"'";
-			if (editor.empty) {
-				$('#elements_in_use ul').html(editor.setCount('<li onClick="editor.showOptions('+id+');">' + Objects[$(original).attr('id')]['name'] + '</li>'));
+			if (editor.insideLayout) {
+				$('#TreeView-' + editor.layoutSelected + ' ul:first').append(editor.setCount('<li onClick="editor.showOptions('+id+');" id="TreeView-'+ Objects[$(original).attr('id')]['name'] +'%d">' + Objects[$(original).attr('id')]['name'] + '<ul></ul></li>'));
+			} else if (editor.empty) {
+				$('#elements_in_use ul').html(editor.setCount('<li onClick="editor.showOptions('+id+');" id="TreeView-'+ Objects[$(original).attr('id')]['name'] +'%d">' + Objects[$(original).attr('id')]['name'] + '<ul></ul></li>'));
 				editor.empty = false;
 			} else {
-				$('#elements_in_use ul').append(editor.setCount('<li onClick="editor.showOptions('+id+');">' + Objects[$(original).attr('id')]['name'] + '</li>'));
+				$('#elements_in_use ul').append(editor.setCount('<li onClick="editor.showOptions('+id+');" id="TreeView-'+ Objects[$(original).attr('id')]['name'] +'%d">' + Objects[$(original).attr('id')]['name'] + '<ul></ul></li>'));
 			}
 			elements['e'+editor.count]=Objects[$(original).attr('id')];
 			if (editor.layoutSelected=="elements") {
@@ -65,9 +69,11 @@ var editor = {
 		});
 		//Layouts:
 		$('.layout').hover(function(){
-				$('#console').html('Inside Layout');
 				editor.layoutSelected=$(this).attr('id');
+				$('#console').html('Inside Layout: ' + editor.layoutSelected);
 				$(this).css('background-color', '#515151');
+				editor.insideLayout = true;
+				
 			}, function(){
 				$('#console').html('');
 				$(this).css('background-color', '');

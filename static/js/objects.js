@@ -12,7 +12,7 @@ var Objects = {
 	 	HTML:"<input type='button' id='Button%d' value='Button'>",
 	 	value:"",
 	 	id:"",
-	 	name: 'Button%d',
+	 	name: 'Button',
 	 	style:"",
 	 	action:""
 	},
@@ -20,7 +20,7 @@ var Objects = {
 		HTML:"<div id='Label%d'>%val</div>",
 		value:"",
 		id:"",
-		name: 'Label%d',
+		name: 'Label',
 		style:"",
 		action:"",
 	}

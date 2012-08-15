@@ -5,6 +5,7 @@ var editor = {
 	empty:true,
 	insideLayout: false,
 	insideElement: 0,
+	hiddenOptions:new Array('HTML', 'inside', 'name'),
 	elements:{},
 	initDraggable: function(){
 		$('.object').draggable({  
@@ -39,8 +40,10 @@ var editor = {
 			elements['e'+editor.count]=Objects[$(original).attr('id')];
 			if (editor.layoutSelected=="elements") {
 				editor.elements[$(original).attr('id')+editor.count]=Objects[$(original).attr('id')];
+				editor.setId(editor.elements[$(original).attr('id')+editor.count]);
 			} else { 
-				editor.elements[editor.layoutSelected]["inside"][$(original).attr('id')+editor.count]=Objects[$(original).attr('id')];				
+				editor.elements[editor.layoutSelected]["inside"][$(original).attr('id')+editor.count]=Objects[$(original).attr('id')];	
+				editor.setId(editor.elements[$(original).attr('id')+editor.count]);			
 			}
 			//
 			$('#'+editor.layoutSelected).css('background-color', '');
@@ -80,16 +83,33 @@ var editor = {
 			}
 		);
 	},	
+	setId:function(element){
+		element.id=element.id.replace("%d", editor.count);
+	
+	},
 	setCount: function(str) {
 		return str.replace("%d", editor.count);
 	},
 	showOptions:function(id){
+		id_form = '"'+id+'"';
 		$("#elements-tree").hide();
 		$("#options-editor").show();
 		$("#options_in_object").html("");
 		for(var prop in editor.elements[id]){
-			$("#options_in_object").append(prop+": <input type='text' value='"+editor.elements[id][prop]+"'><br>");
+			if($.inArray(prop, editor.hiddenOptions)==-1){
+				value = '"'+editor.elements[id][prop]+'"';
+				$("#options_in_object").append(prop+": <input onChange='editor.updateOption("+id_form+","+value+");' type='text' value='"+editor.elements[id][prop]+"'><br>");
+			}
 		}
+		
+	},
+	updateOption:function(id, value){
+		for(var prop in editor.elements[id]){
+			if($.inArray(prop, editor.hiddenOptions)==-1){
+				editor.elements[id][prop]=value;
+			}
+		}
+		
 		
 	},
 	hideOptions:function(){
@@ -100,5 +120,18 @@ var editor = {
 	renderValue:function(id, value){
 		html = $("#"+id).html();
 		$("#"+id).html(html.replace("%val", value));
+		
+	},
+	
+	renderElements:function(){
+		for(var element in editor.elements){
+				$("#elements").append(editor.setCount(element['HTML']));
+				for(element2 in element['inside']){
+					$("#"+element[id]).append(element2['HTML']);
+					
+				
+			}
+		
+		}
 	}
 }

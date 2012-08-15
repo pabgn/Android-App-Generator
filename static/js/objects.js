@@ -2,7 +2,7 @@ var Objects = {
 	LinearLayout:{
 	 	HTML:"<div class='layout' id='LinearLayout%d' style='width:100%;'>",
 	 	value:"",
-	 	id:"",
+	 	id:"LinearLayout%d",
 	 	name: 'LinearLayout',
 	 	style:"",
 	 	action:"",
@@ -11,16 +11,16 @@ var Objects = {
 	Button:{
 	 	HTML:"<input type='button' id='Button%d' value='Button'>",
 	 	value:"",
-	 	id:"",
-	 	name: 'Button',
+	 	id:"Button%d",
+	 	name: 'Button%d',
 	 	style:"",
 	 	action:""
 	},
 	Label:{
 		HTML:"<div id='Label%d'>%val</div>",
 		value:"",
-		id:"",
-		name: 'Label',
+		id:"Label%d",
+		name: 'Label%d',
 		style:"",
 		action:"",
 	}

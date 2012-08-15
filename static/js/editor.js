@@ -1,13 +1,15 @@
 var editor = {
 	dragging:false,
-	layoutSelected:'elements',
+	layoutSelected:'LinearLayout0',
 	count:0,
 	empty:true,
 	insideLayout: false,
 	insideElement: 0,
 	hiddenOptions:new Array('HTML', 'inside', 'name'),
-	elements:{},
+	elements:{"LinearLayout0":Objects['LinearLayout']},
 	initDraggable: function(){
+		editor.setId(editor.elements["LinearLayout0"]);
+		editor.renderAll();
 		$('.object').draggable({  
 			opacity: 0.7, 
 			helper: 'clone', 
@@ -26,7 +28,7 @@ var editor = {
 		editor.dragging = true;
 		if (stop) {
 			editor.count++;
-			$('#'+editor.layoutSelected).append(editor.setCount(Objects[$(original).attr('id')]['HTML']));
+			//$('#'+editor.layoutSelected).append(editor.setCount(Objects[$(original).attr('id')]['HTML']));
 			//Save new element
 			id = "'"+$(original).attr('id')+editor.count+"'";
 			if (editor.insideLayout) {
@@ -37,20 +39,23 @@ var editor = {
 			} else {
 				$('#elements_in_use ul').append(editor.setCount('<li onClick="editor.showOptions('+id+');" id="TreeView-'+ Objects[$(original).attr('id')]['name'] +'%d">' + Objects[$(original).attr('id')]['name'] + '<ul></ul></li>'));
 			}
-			elements['e'+editor.count]=Objects[$(original).attr('id')];
-			if (editor.layoutSelected=="elements") {
-				editor.elements[$(original).attr('id')+editor.count]=Objects[$(original).attr('id')];
-				editor.setId(editor.elements[$(original).attr('id')+editor.count]);
-			} else { 
-				editor.elements[editor.layoutSelected]["inside"][$(original).attr('id')+editor.count]=Objects[$(original).attr('id')];	
-				editor.setId(editor.elements[$(original).attr('id')+editor.count]);			
-			}
+			
+			//Save element in object.
+					
+			editor.addElement(editor.layoutSelected, $(original).attr('id'));
+			editor.renderAll();
 			//
+			
 			$('#'+editor.layoutSelected).css('background-color', '');
 			editor.dragging = false;
 			editor.hideOptions();
 			
 		}
+	},
+	addElement:function(layout, element){
+			editor.elements[layout]["inside"][element+editor.count]=Objects[element];	
+			editor.setId(editor.elements[layout]["inside"][element+editor.count]);	
+		
 	},
 	showLayouts:function(){
 			$('.layout').css('border', '2px dotted white');			
@@ -90,6 +95,10 @@ var editor = {
 	setCount: function(str) {
 		return str.replace("%d", editor.count);
 	},
+	setHTMLId:function(str,id){
+		return str.replace("%d", id);	
+		
+	},
 	showOptions:function(id){
 		id_form = '"'+id+'"';
 		$("#elements-tree").hide();
@@ -108,6 +117,7 @@ var editor = {
 			if($.inArray(prop, editor.hiddenOptions)==-1){
 				editor.elements[id][prop]=value;
 			}
+		editor.renderAll();
 		}
 		
 		
@@ -122,16 +132,24 @@ var editor = {
 		$("#"+id).html(html.replace("%val", value));
 		
 	},
-	
-	renderElements:function(){
-		for(var element in editor.elements){
-				$("#elements").append(editor.setCount(element['HTML']));
-				for(element2 in element['inside']){
-					$("#"+element[id]).append(element2['HTML']);
-					
-				
-			}
+	renderAll:function(){
 		
+			editor.render(editor.elements, "elements");
+	
+	},
+	
+	render:function(elements, layout){
+
+		for(var element in elements){
+			$("#"+layout).append(editor.setHTMLId(elements[element]['HTML'],elements[element]['id']));
+			editor.renderValue(elements[element]['id'], elements[element]['value']);
+			try{if(Object.keys(editor.elements[element]["inside"]).length>0){
+				editor.render(elements[element]['inside'], elements[element]['id']);
+			} } catch(error){
+				
+			}	
+			
 		}
+		
 	}
 }

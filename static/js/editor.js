@@ -25,11 +25,12 @@ var editor = {
 			editor.count++;
 			$('#'+editor.layoutSelected).append(editor.setCount(Objects[$(original).attr('id')]['HTML']));
 			//Save new element
+			id = "'"+$(original).attr('id')+editor.count+"'";
 			if (editor.empty) {
-				$('#elements_in_use ul').html(editor.setCount('<li>' + Objects[$(original).attr('id')]['name'] + '</li>'));
+				$('#elements_in_use ul').html(editor.setCount('<li onClick="editor.showOptions('+id+');">' + Objects[$(original).attr('id')]['name'] + '</li>'));
 				editor.empty = false;
 			} else {
-				$('#elements_in_use ul').append(editor.setCount('<li>' + Objects[$(original).attr('id')]['name'] + '</li>'));
+				$('#elements_in_use ul').append(editor.setCount('<li onClick="editor.showOptions('+id+');">' + Objects[$(original).attr('id')]['name'] + '</li>'));
 			}
 			elements['e'+editor.count]=Objects[$(original).attr('id')];
 			if (editor.layoutSelected=="elements") {
@@ -40,6 +41,8 @@ var editor = {
 			//
 			$('#'+editor.layoutSelected).css('background-color', '');
 			editor.dragging = false;
+			editor.hideOptions();
+			
 		}
 	},
 	showLayouts:function(){
@@ -73,5 +76,19 @@ var editor = {
 	},	
 	setCount: function(str) {
 		return str.replace("%d", editor.count);
+	},
+	showOptions:function(id){
+		$("#elements-tree").hide();
+		$("#options-editor").show();
+		$("#options_in_object").html("");
+		for(var prop in editor.elements[id]){
+			$("#options_in_object").append(prop+": <input type='text' value='"+editor.elements[id][prop]+"'><br>");
+		}
+		
+	},
+	hideOptions:function(){
+		$("#elements-tree").show();
+		$("#options-editor").hide();
+		
 	}
 }

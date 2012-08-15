@@ -1,34 +1,35 @@
 var Objects = {
-	 LinearLayout:{
-	 	HTML:"<div class='layout' id='LinearLayout" + editor.count + "' style='width:100%;'>",
+	Elements = {}
+	LinearLayout:{
+	 	HTML:"<div class='layout' id='LinearLayout%d' style='width:100%;'>",
 	 	value:"",
-	 	name: 'LinearLayout',
+	 	name: 'LinearLayout %d',
 	 	id:"",
 	 	style:"",
 	 	action:""
-	 },
-	 RelativeLayout:{
-	  	HTML:"<div class='layout' id='RelativeLayout" + editor.count + "' style='width:100%;'>",
+	},
+	RelativeLayout:{
+	  	HTML:"<div class='layout' id='RelativeLayout%d' style='width:100%;'>",
 	  	value:"",
-	  	name: 'RelativeLayout',
+	  	name: 'RelativeLayout %d',
 	  	id:"",
 	  	style:"",
 	  	action:""
-	 },
-	 AbsoluteLayout:{
-	   	HTML:"<div class='layout' id='AbsoluteLayout" + editor.count + "' style='width:100%;'>",
+	},
+	AbsoluteLayout:{
+	   	HTML:"<div class='layout' id='AbsoluteLayout%d' style='width:100%;'>",
 	   	value:"",
-	   	name: 'AbsoluteLayout',
+	   	name: 'AbsoluteLayout %d',
 	   	id:"",
 	   	style:"",
 	   	action:""
-	 },
-	 Button:{
-	 	HTML:"<input type='button' value='Button'>",
+	},
+	Button:{
+	 	HTML:"<input type='button' id='Button%d' value='Button'>",
 	 	value:"",
 	 	id:"",
-	 	name: 'Button',
+	 	name: 'Button %d',
 	 	style:"",
 	 	action:""
-	 }
+	}
 }

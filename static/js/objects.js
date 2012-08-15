@@ -12,15 +12,15 @@ var Objects = {
 	 	HTML:"<input type='button' id='Button%d' value='Button'>",
 	 	value:"",
 	 	id:"",
-	 	name: 'Button %d',
+	 	name: 'Button%d',
 	 	style:"",
 	 	action:""
 	},
 	Label:{
-		HTML:"<div></div>",
+		HTML:"<div id='Label%d'>%val</div>",
 		value:"",
 		id:"",
-		name: 'Label %d',
+		name: 'Label%d',
 		style:"",
 		action:"",
 		

@@ -90,5 +90,10 @@ var editor = {
 		$("#elements-tree").show();
 		$("#options-editor").hide();
 		
+	},
+	renderValue:function(id, value){
+		html = $("#"+id).html();
+		$("#"+id).html(html.replace("%val", value));
+		
 	}
 }

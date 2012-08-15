@@ -33,19 +33,16 @@ var editor = {
 			id = "'"+$(original).attr('id')+editor.count+"'";
 			if (editor.insideLayout) {
 				$('#TreeView-' + editor.layoutSelected + ' ul:first').append(editor.setCount('<li onClick="editor.showOptions('+id+');" id="TreeView-'+ Objects[$(original).attr('id')]['name'] +'%d">' + Objects[$(original).attr('id')]['name'] + '<ul></ul></li>'));
+				editor.insideLayout = false;
 			} else if (editor.empty) {
 				$('#elements_in_use ul').html(editor.setCount('<li onClick="editor.showOptions('+id+');" id="TreeView-'+ Objects[$(original).attr('id')]['name'] +'%d">' + Objects[$(original).attr('id')]['name'] + '<ul></ul></li>'));
 				editor.empty = false;
 			} else {
 				$('#elements_in_use ul').append(editor.setCount('<li onClick="editor.showOptions('+id+');" id="TreeView-'+ Objects[$(original).attr('id')]['name'] +'%d">' + Objects[$(original).attr('id')]['name'] + '<ul></ul></li>'));
 			}
-			
 			//Save element in object.
-					
 			editor.addElement(editor.layoutSelected, $(original).attr('id'));
 			editor.renderAll();
-			//
-			
 			$('#'+editor.layoutSelected).css('background-color', '');
 			editor.dragging = false;
 			editor.hideOptions();
@@ -53,9 +50,8 @@ var editor = {
 		}
 	},
 	addElement:function(layout, element){
-			editor.elements[layout]["inside"][element+editor.count]=Objects[element];	
+			editor.elements[layout]["inside"][element+editor.count]=Objects[element];
 			editor.setId(editor.elements[layout]["inside"][element+editor.count]);	
-		
 	},
 	showLayouts:function(){
 			$('.layout').css('border', '2px dotted white');			

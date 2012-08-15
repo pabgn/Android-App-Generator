@@ -129,12 +129,13 @@ var editor = {
 		
 	},
 	renderAll:function(){
-		
+			$("#elements").html("");
 			editor.render(editor.elements, "elements");
 	
 	},
 	
 	render:function(elements, layout){
+	
 
 		for(var element in elements){
 			$("#"+layout).append(editor.setHTMLId(elements[element]['HTML'],elements[element]['id']));

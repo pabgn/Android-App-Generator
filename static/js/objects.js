@@ -1,5 +1,4 @@
 var Objects = {
-	
 	 LinearLayout:{
 	 	HTML:"<div class='layout' id='LinearLayout"+editor.count+"' style='width:100%;'>",
 	 	value:"",
@@ -16,6 +15,4 @@ var Objects = {
 	 	style:"",
 	 	action:""
 	 }
-	
-	
 }

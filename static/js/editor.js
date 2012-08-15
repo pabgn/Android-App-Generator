@@ -94,6 +94,5 @@ var editor = {
 	renderValue:function(id, value){
 		html = $("#"+id).html();
 		$("#"+id).html(html.replace("%val", value));
-		
 	}
 }

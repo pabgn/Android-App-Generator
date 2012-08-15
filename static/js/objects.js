@@ -23,6 +23,5 @@ var Objects = {
 		name: 'Label%d',
 		style:"",
 		action:"",
-		
 	}
 }

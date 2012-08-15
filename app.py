@@ -3,7 +3,7 @@
 
 from flask import Flask, render_template, request, url_for 
 app = Flask(__name__)
-objects = [('Layouts', ['LinearLayout', 'AbsoluteLayout', 'RelativeLayout']), ('Buttons', ['Button'])]
+objects = [('Layouts', ['LinearLayout', 'AbsoluteLayout', 'RelativeLayout']), ('Buttons', ['Button', 'Label'])]
 
 @app.route('/')
 def index():

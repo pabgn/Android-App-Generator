@@ -15,5 +15,14 @@ var Objects = {
 	 	name: 'Button %d',
 	 	style:"",
 	 	action:""
-	}	
+	},
+	Label:{
+		HTML:"<div></div>",
+		value:"",
+		id:"",
+		name: 'Label %d',
+		style:"",
+		action:"",
+		
+	}
 }

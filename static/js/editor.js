@@ -25,14 +25,18 @@ var editor = {
 			editor.count++;
 			$('#'+editor.layoutSelected).append(editor.setCount(Objects[$(original).attr('id')]['HTML']));
 			//Save new element
-
-			if(editor.layoutSelected=="elements"){
-			editor.elements[$(original).attr('id')+editor.count]=Objects[$(original).attr('id')];
-			}else{
-			editor.elements[editor.layoutSelected]["inside"][$(original).attr('id')+editor.count]=Objects[$(original).attr('id')];								
+			if (editor.empty) {
+				$('#elements_in_use ul').html(editor.setCount('<li>' + Objects[$(original).attr('id')]['name'] + '</li>'));
+				editor.empty = false;
+			} else {
+				$('#elements_in_use ul').append(editor.setCount('<li>' + Objects[$(original).attr('id')]['name'] + '</li>'));
 			}
-			editor.count++;
-
+			elements['e'+editor.count]=Objects[$(original).attr('id')];
+			if (editor.layoutSelected=="elements") {
+				editor.elements[$(original).attr('id')+editor.count]=Objects[$(original).attr('id')];
+			} else { 
+				editor.elements[editor.layoutSelected]["inside"][$(original).attr('id')+editor.count]=Objects[$(original).attr('id')];				
+			}
 			//
 			$('#'+editor.layoutSelected).css('background-color', '');
 			editor.dragging = false;

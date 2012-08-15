@@ -4,30 +4,30 @@ var editor = {
 	count:0,
 	elements:{},
 	initDraggable: function(){
-		$( ".object" ).draggable({  
+		$('.object').draggable({  
 			opacity: 0.7, 
 			helper: "clone", 
-			revert:true, 
-			drag: function(ev, ui){
-				editor.hoverDetectors();
-				editor.dragMonitor($(ui.helper), $(this), false);
-				editor.showLayouts();
-			},
-			stop: function(ev, ui){
-				editor.dragMonitor($(ui.helper), $(this), true);
-			} 
+			revert:true,  
 		});	
+		$('.object').bind('drag', function(ev, ui){
+			editor.hoverDetectors();
+			editor.dragMonitor($(ui.helper), $(this), false);
+			editor.showLayouts();
+		});
+		$('.object').bind('dragstop', function(ev, ui){
+			editor.dragMonitor($(ui.helper), $(this), true);
+		});
 	},
 	dragMonitor: function(object, original, stop){
-		editor.dragging=true;
-			if(stop){
+		editor.dragging = true;
+		if (stop) {
 			$("#"+editor.layoutSelected).append(Objects[$(original).attr('id')]['HTML']);
 			//Save new element
 			elements["e"+editor.count]=Objects[$(original).attr('id')];
 			editor.count++;
 			//
 			$("#"+editor.layoutSelected).css("background-color", "");
-			editor.dragging=false;
+			editor.dragging = false;
 		}
 	},
 	showLayouts:function(){
@@ -38,13 +38,13 @@ var editor = {
 		$(".layout").css("border", "");			
 		$(".layout").css("height", "100%");				
 	},
-	hoverDetectors:function(){
+	hoverDetectors: function(){
 		//Main Layout (elements)
-		$("#elements").hover(function(){
+		$("#elements").hover(function() {
 				$("#console").html("Inside Elements");
-		 		editor.layoutSelected="elements";
+		 		editor.layoutSelected = "elements";
 				$(this).css("background-color", "#515151");	
-		}, function(){
+		}, function() {
 				$("#console").html("");
 				$(this).css("background-color", "");			
 		});

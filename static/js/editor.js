@@ -2,6 +2,7 @@ var editor = {
 	dragging:false,
 	layoutSelected:'elements',
 	count:0,
+	empty:true,
 	elements:{},
 	initDraggable: function(){
 		$('.object').draggable({  
@@ -25,6 +26,12 @@ var editor = {
 			//Save new element
 			elements['e'+editor.count]=Objects[$(original).attr('id')];
 			editor.count++;
+			if (editor.empty) {
+				$('#elements_in_use ul').html('<li>' + Objects[$(original).attr('id')].name + '</li>');
+				editor.empty = false;
+			} else {
+				$('#elements_in_use ul').append('<li>' + Objects[$(original).attr('id')].name + '</li>');
+			}
 			//
 			$('#'+editor.layoutSelected).css('background-color', '');
 			editor.dragging = false;

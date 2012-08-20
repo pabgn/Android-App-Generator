@@ -42,7 +42,6 @@ var editor = {
 			editor.insideLayout = false;
 			//Save element in object.
 			editor.addElement(editor.layoutSelected, $(original).attr('id'));
-			editor.renderAll();
 			$('#'+editor.layoutSelected).css('background-color', '');
 			editor.dragging = false;
 			editor.hideOptions();
@@ -51,6 +50,7 @@ var editor = {
 	addElement:function(layout, element){
 			editor.elements[layout]["inside"][element+editor.count]=Objects[element];
 			editor.setId(editor.elements[layout]["inside"][element+editor.count]);	
+			editor.renderAll();
 	},
 	showLayouts:function(){
 			$('.layout').css('border', '2px dotted white');			
@@ -61,15 +61,6 @@ var editor = {
 		$('.layout').css('height', '100%');				
 	},
 	hoverDetectors: function(){
-		//Main Layout (elements)
-		$('#elements').hover(function() {
-				$('#console').html('Inside Elements');
-		 		editor.layoutSelected = 'elements';
-				$(this).css('background-color', '#515151');	
-		}, function() {
-				$('#console').html('');
-				$(this).css('background-color', '');			
-		});
 		//Layouts:
 		$('.layout').hover(function(){
 				editor.layoutSelected=$(this).attr('id');
@@ -135,7 +126,6 @@ var editor = {
 	
 	render:function(elements, layout){
 	
-
 		for(var element in elements){
 			$("#"+layout).append(editor.setHTMLId(elements[element]['HTML'],elements[element]['id']));
 			editor.renderValue(elements[element]['id'], elements[element]['value']);

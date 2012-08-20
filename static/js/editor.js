@@ -32,21 +32,20 @@ var editor = {
 			//Save new element
 			id = "'"+$(original).attr('id')+editor.count+"'";
 			if (editor.insideLayout) {
-				$('#TreeView-' + editor.layoutSelected + ' ul:first').append(editor.setCount('<li onClick="editor.showOptions('+id+');" id="TreeView-'+ Objects[$(original).attr('id')]['name'] +'%d">' + Objects[$(original).attr('id')]['name'] + '<ul></ul></li>'));
-				editor.insideLayout = false;
+				$('#TreeView-' + editor.layoutSelected + ' ul').append(editor.setCount('<li onClick="editor.showOptions('+id+');" id="TreeView-'+ Objects[$(original).attr('id')]['name'] +'%d">' + Objects[$(original).attr('id')]['name'] + '<ul></ul></li>'));
 			} else if (editor.empty) {
 				$('#elements_in_use ul').html(editor.setCount('<li onClick="editor.showOptions('+id+');" id="TreeView-'+ Objects[$(original).attr('id')]['name'] +'%d">' + Objects[$(original).attr('id')]['name'] + '<ul></ul></li>'));
 				editor.empty = false;
 			} else {
-				$('#elements_in_use ul').append(editor.setCount('<li onClick="editor.showOptions('+id+');" id="TreeView-'+ Objects[$(original).attr('id')]['name'] +'%d">' + Objects[$(original).attr('id')]['name'] + '<ul></ul></li>'));
+				$('#elements_in_use ul.root').append(editor.setCount('<li onClick="editor.showOptions('+id+');" id="TreeView-'+ Objects[$(original).attr('id')]['name'] +'%d">' + Objects[$(original).attr('id')]['name'] + '<ul></ul></li>'));
 			}
+			editor.insideLayout = false;
 			//Save element in object.
 			editor.addElement(editor.layoutSelected, $(original).attr('id'));
 			editor.renderAll();
 			$('#'+editor.layoutSelected).css('background-color', '');
 			editor.dragging = false;
 			editor.hideOptions();
-			
 		}
 	},
 	addElement:function(layout, element){

@@ -10,7 +10,7 @@ var editor = {
 	initDraggable: function(){
 		editor.setId(editor.elements["LinearLayout0"]);
 		editor.renderAll();
-		$('#elements_in_use ul').append('<li onClick="editor.showOptions("LinearLayout0");" id="TreeView-LinearLayout0>LinearLayout0<ul></ul></li>');
+		$('#elements_in_use ul').append('<li onClick="editor.showOptions("LinearLayout0");" id="TreeView-LinearLayout0">LinearLayout0<ul></ul></li>');
 		$('.object').draggable({  
 			opacity: 0.7, 
 			helper: 'clone', 
